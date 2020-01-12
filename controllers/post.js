@@ -3,6 +3,7 @@ const Post = db.posts;
 const User = db.users;
 const Tag = db.tags;
 const Status = db.statuses;
+const Op = require('sequelize').Op;
 
 
 exports.create = (req, res, post) => {
@@ -13,14 +14,15 @@ exports.create = (req, res, post) => {
         idOwner: 1,
         idTag: 1
     }).then(post => {
-        console.log(post);
+        req.session.message = 'Article ajouté';
+        res.redirect('/posts');
     })
 };
 
 exports.findAll = (req, res, route) => {
     Post.findAll({
         where: {
-            idStatus: 2
+            [Op.or]: [{idStatus:2},{idOwner:req.session.user.idUser}]
         },
         include: [User, Tag]
     }).then(posts => {
