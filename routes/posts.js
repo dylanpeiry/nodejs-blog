@@ -25,6 +25,10 @@ router.post('/:id/edit', checkAuth,(req,res)=>{
 
     }
 });
+router.get('/create', [checkAuth, hasRole(2)], (req, res) => {
+    let route = req.baseUrl;
+    res.render('post/create', {route: route});
+});
 
 router.get('/:id', checkAuth, (req, res) => {
     let id = req.params.id;
@@ -33,10 +37,7 @@ router.get('/:id', checkAuth, (req, res) => {
 
 
 
-router.get('/create', [checkAuth, hasRole(2)], (req, res) => {
-    let route = req.baseUrl;
-    res.render('post-create', {route: route});
-});
+
 
 router.post('/create', [checkAuth, hasRole(2)], (req, res) => {
     let post = req.body;
