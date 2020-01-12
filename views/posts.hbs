@@ -1,0 +1,24 @@
+<div class="row">
+{{#if posts}}
+    {{#each posts as |p index|}}
+        {{#ifMod index 3}}
+            </div>
+            <div class="row">
+        {{/ifMod}}
+            <div class="col-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="/posts/{{p.idPost}}">{{p.title}}</a></h5>
+                        <p class="card-text">{{p.content}}</p>
+                    </div>
+                    <div class="card-footer">
+                        {{p.user.username}} le {{formatDate p.createdAt}}
+                    </div>
+                </div>
+            </div>
+    {{/each}}
+{{else}}
+        <span class="alert alert-warning w-100 text-center">Aucun article n'a encore été publié</span>
+{{/if}}
+</div>
+

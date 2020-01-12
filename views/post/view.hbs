@@ -1,0 +1,20 @@
+<div class="post-view">
+    <div class="card">
+        <div class="card-header">
+            <h4>{{post.title}} <span class="badge badge-{{ternary post.status.idStatus 2 'primary'
+                                                                  'warning'}} float-right">{{post.status.label}}</span>
+            </h4>
+        </div>
+        <div class="card-body">{{post.content}}</div>
+        <div class="card-footer"><span class="small-text">Article écrit par {{post.user.username}} le {{formatDate
+                post.createdAt}}</span></div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-4">
+            <a href="/posts/{{{post.idPost}}}/edit" class="btn btn-primary btn-sm w-100">Editer</a>
+        </div>
+        <div class="col-4 offset-4">
+            <a href="/posts/{{post.idPost}}/delete" class="btn btn-danger btn-sm  w-100">Supprimer</a>
+        </div>
+    </div>
+</div>
